@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
         count = 0;
 
-        listView = (ListView)findViewById(R.id.listView);
+        listView = (ListView)findViewById(R.id.mainlist);
         mCards = new ArrayList<card>();
 
         wordset = new TreeSet<String>();

@@ -11,8 +11,16 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 
 public class EditDialogFlagment extends DialogFragment{
+
+    Button button;
+    EditText rEdit;
+    EditText mEdit;
+
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -22,6 +30,9 @@ public class EditDialogFlagment extends DialogFragment{
 
         builder.setView(content);
 
+        button = (Button)content.findViewById(R.id.iconbutton);
+        rEdit = (EditText)content.findViewById(R.id.rEdit);
+        mEdit = (EditText)content.findViewById(R.id.mEdit);
 
 
         builder.setTitle("編集");

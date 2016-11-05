@@ -8,8 +8,15 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
 public class NewDialogFlagment extends DialogFragment{
+
+    Button button;
+    EditText rEdit;
+    EditText mEdit;
+
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -19,7 +26,9 @@ public class NewDialogFlagment extends DialogFragment{
 
         builder.setView(content);
 
-
+        button = (Button)content.findViewById(R.id.iconbutton);
+        rEdit = (EditText)content.findViewById(R.id.rEdit);
+        mEdit = (EditText)content.findViewById(R.id.mEdit);
 
         builder.setTitle("新規作成");
         builder.setPositiveButton("完了", new DialogInterface.OnClickListener(){
