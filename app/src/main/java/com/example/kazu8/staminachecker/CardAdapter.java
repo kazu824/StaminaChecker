@@ -1,6 +1,8 @@
 package com.example.kazu8.staminachecker;
 
 
+import android.app.DialogFragment;
+import android.os.Bundle;
 import android.content.Context;
 import android.content.Intent;
 import android.database.DataSetObserver;

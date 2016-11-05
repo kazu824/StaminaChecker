@@ -1,5 +1,6 @@
 package com.example.kazu8.staminachecker;
 
+import android.app.DialogFragment;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -49,5 +50,8 @@ public class MainActivity extends AppCompatActivity {
 
         mCardAdapter = new CardAdapter(this,R.layout.card, mCards);
         listView.setAdapter(mCardAdapter);
+
+        DialogFragment newFragment = new EditDialogFlagment();
+        newFragment.show(getFragmentManager(),"ダイアログ");
     }
 }
