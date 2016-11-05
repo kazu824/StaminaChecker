@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="360dp"
+    android:padding="15dp"
+    android:layout_height="330dp">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="330dp"
+        android:layout_height="100dp">
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:id="@+id/iconbutton"
+            android:layout_weight="1"
+            android:background="@mipmap/ic_launcher"
+            android:text="変更する" />
+
+        <EditText
+            android:layout_height="match_parent"
+            android:inputType="text"
+            android:ems="10"
+            android:id="@+id/editText"
+            android:layout_weight="1"
+            android:layout_width="230dp"
+            android:gravity="right|center_vertical"
+            android:hint="タイトル"
+            android:padding="10dp"
+            android:textSize="30dp"
+            android:singleLine="true" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="330dp"
+        android:layout_height="100dp">
+
+        <TextView
+            android:text="回復時間"
+            android:layout_width="165dp"
+            android:layout_height="match_parent"
+            android:id="@+id/textView"
+            android:layout_weight="1"
+            android:gravity="center_vertical|center_horizontal"
+            android:textSize="30sp" />
+
+        <EditText
+            android:layout_width="165dp"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:id="@+id/editText2"
+            android:layout_weight="1"
+            android:textSize="25sp"
+            android:inputType="number"
+            android:singleLine="true"
+            android:hint="1~999(分)"
+            android:gravity="right|center_vertical" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="330dp"
+        android:layout_height="100dp">
+
+        <TextView
+            android:text="最大量"
+            android:layout_width="165dp"
+            android:layout_height="match_parent"
+            android:id="@+id/textView2"
+            android:layout_weight="1"
+            android:gravity="center_vertical|center_horizontal"
+            android:textSize="30sp" />
+
+        <EditText
+            android:layout_width="165dp"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:id="@+id/editText3"
+            android:layout_weight="1"
+            android:textSize="25sp"
+            android:gravity="right|center_vertical"
+            android:inputType="number"
+            android:singleLine="true"
+            android:hint="1~999" />
+    </LinearLayout>
+</LinearLayout>
