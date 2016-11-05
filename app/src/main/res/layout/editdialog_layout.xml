@@ -29,9 +29,9 @@
             android:gravity="right|center_vertical"
             android:hint="タイトル"
             android:padding="10dp"
-            android:textSize="30dp"
             android:singleLine="true"
-            android:layout_width="0dp" />
+            android:layout_width="0dp"
+            android:textSize="25sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -46,7 +46,7 @@
             android:id="@+id/textView"
             android:layout_weight="1"
             android:gravity="center_vertical|center_horizontal"
-            android:textSize="30sp"
+            android:textSize="25sp"
             android:layout_width="150dp" />
 
         <EditText
@@ -54,7 +54,7 @@
             android:ems="10"
             android:id="@+id/editText2"
             android:layout_weight="1"
-            android:textSize="25sp"
+            android:textSize="24sp"
             android:inputType="number"
             android:singleLine="true"
             android:hint="1~999(分)"
@@ -74,7 +74,7 @@
             android:id="@+id/textView2"
             android:layout_weight="1"
             android:gravity="center_vertical|center_horizontal"
-            android:textSize="30sp"
+            android:textSize="25sp"
             android:layout_width="150dp" />
 
         <EditText
@@ -82,7 +82,7 @@
             android:ems="10"
             android:id="@+id/editText3"
             android:layout_weight="1"
-            android:textSize="25sp"
+            android:textSize="24sp"
             android:gravity="right|center_vertical"
             android:inputType="number"
             android:singleLine="true"
