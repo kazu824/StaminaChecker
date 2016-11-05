@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.content.Context;
 import android.content.Intent;
 import android.database.DataSetObserver;
+import android.app.DialogFragment;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -141,6 +142,7 @@ public class CardAdapter extends ArrayAdapter<card> {
             viewHolder.editButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    DialogFragment editFragment = new EditDialogFlagment();
 
                 }
             });
