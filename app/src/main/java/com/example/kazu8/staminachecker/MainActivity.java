@@ -51,7 +51,10 @@ public class MainActivity extends AppCompatActivity {
         mCardAdapter = new CardAdapter(this,R.layout.card, mCards);
         listView.setAdapter(mCardAdapter);
 
-        DialogFragment newFragment = new EditDialogFlagment();
-        newFragment.show(getFragmentManager(),"ダイアログ");
+        //DialogFragment newFragment = new NewDialogFlagment();
+        //newFragment.show(getFragmentManager(),"新規追加");
+
+        //DialogFragment editFragment = new EditDialogFlagment();
+        //editFragment.show(getFragmentManager(),"編集");
     }
 }
