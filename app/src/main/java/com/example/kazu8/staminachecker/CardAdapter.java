@@ -143,7 +143,6 @@ public class CardAdapter extends ArrayAdapter<card> {
             viewHolder.editButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    DialogFragment dialogFragment = new EditDialogFragment();
 
                 }
             });

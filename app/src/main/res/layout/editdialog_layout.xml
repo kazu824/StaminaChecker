@@ -12,13 +12,12 @@
         android:layout_height="match_parent"
         android:layout_weight="1">
 
-        <Button
+        <ImageButton
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:id="@+id/iconbutton"
+            android:id="@+id/iconButton"
             android:layout_weight="1"
-            android:background="@mipmap/ic_launcher"
-            android:text="変更する"
-            android:layout_width="0dp" />
+            android:src="@mipmap/ic_launcher" />
 
         <EditText
             android:layout_height="match_parent"

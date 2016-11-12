@@ -21,9 +21,10 @@
         <Button
             android:text="新規追加"
             android:layout_width="match_parent"
-            android:id="@+id/button"
+            android:id="@+id/ｂ"
             android:textSize="30sp"
-            android:layout_height="72dp" />
+            android:layout_height="72dp"
+            android:onClick="newbutton" />
     </LinearLayout>
 
 </RelativeLayout>
