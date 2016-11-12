@@ -28,13 +28,13 @@ import java.util.TreeSet;
 
 public class MainActivity extends AppCompatActivity {
 
-    ListView listView;
-    List<card> mCards;
-    CardAdapter mCardAdapter;
+    public static ListView listView;
+    public static List<card> mCards;
+    public  static CardAdapter mCardAdapter;
 
-    TreeSet<String> wordset;
-    SharedPreferences pref;
-    SharedPreferences.Editor editer;
+    public static TreeSet<String> wordset;
+    public static SharedPreferences pref;
+    public static SharedPreferences.Editor editer;
 
     public static Drawable mainicon;
     public static String mainname;
@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         wordset = new TreeSet<String>();
         pref = getSharedPreferences("stamina",MODE_PRIVATE);
         editer = pref.edit();
+
 
         wordset.addAll(pref.getStringSet("wordSet",wordset));
         for(String word : wordset){
