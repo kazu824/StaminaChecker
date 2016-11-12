@@ -1,8 +1,10 @@
 package com.example.kazu8.staminachecker;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
@@ -60,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
         listCheck = false;
 
         count = 0;
+
 
         listView = (ListView)findViewById(R.id.mainlist);
         mCards = new ArrayList<card>();
@@ -150,7 +153,6 @@ public class MainActivity extends AppCompatActivity {
 
                 }
             });
-
             return builder.create();
         }
     }
@@ -489,4 +491,5 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
+
 }
