@@ -11,11 +11,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class NewDialogFlagment extends DialogFragment{
+public class NewDialogFragment extends DialogFragment {
 
-    Button button;
-    EditText rEdit;
-    EditText mEdit;
+    Button nbutton;
+    EditText nrEdit;
+    EditText nmEdit;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -26,13 +26,13 @@ public class NewDialogFlagment extends DialogFragment{
 
         builder.setView(content);
 
-        button = (Button)content.findViewById(R.id.iconbutton);
-        rEdit = (EditText)content.findViewById(R.id.rEdit);
-        mEdit = (EditText)content.findViewById(R.id.mEdit);
+        nbutton = (Button) content.findViewById(R.id.iconbutton);
+        nrEdit = (EditText) content.findViewById(R.id.rEdit);
+        nmEdit = (EditText) content.findViewById(R.id.mEdit);
 
         builder.setTitle("新規作成");
-        builder.setPositiveButton("完了", new DialogInterface.OnClickListener(){
-            public  void onClick(DialogInterface dialog,int id){
+        builder.setPositiveButton("完了", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
 
             }
         });

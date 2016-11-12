@@ -1,21 +1,17 @@
 package com.example.kazu8.staminachecker;
 
-
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 
-public class EditDialogFlagment extends DialogFragment{
+public class EditDialogFragment extends DialogFragment {
 
     Button button;
     EditText rEdit;
@@ -35,11 +31,13 @@ public class EditDialogFlagment extends DialogFragment{
         mEdit = (EditText)content.findViewById(R.id.mEdit);
 
 
+
+
         builder.setTitle("編集");
         builder.setPositiveButton("完了", new DialogInterface.OnClickListener(){
-           public  void onClick(DialogInterface dialog,int id){
+            public  void onClick(DialogInterface dialog,int id){
 
-           }
+            }
         });
         builder.setNegativeButton("削除", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
