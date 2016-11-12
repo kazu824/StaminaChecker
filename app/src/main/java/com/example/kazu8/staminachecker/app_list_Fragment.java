@@ -35,6 +35,7 @@ public class app_list_Fragment extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
 
+
         LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View content = inflater.inflate(R.layout.appdialog_layout, null);
 
@@ -63,13 +64,6 @@ public class app_list_Fragment extends DialogFragment {
                 iconView = appmCardAdapter.getIcon(position);
                 appnameText = appmCardAdapter.getName(position);
                 Log.d("a", "a");
-                Handler handler = new Handler(Looper.getMainLooper());
-                handler.post(new Runnable() {
-                    @Override
-                    public void run() {
-
-                    }
-                });
                 onDestroyView();
                 DialogFragment dialogFragment = new NewDialogFragment();
                 dialogFragment.show(getFragmentManager(),"新規作成");

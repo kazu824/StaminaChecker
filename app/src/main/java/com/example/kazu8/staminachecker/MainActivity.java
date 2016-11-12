@@ -35,10 +35,6 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences pref;
     SharedPreferences.Editor editer;
 
-    Boolean newCheck;
-
-    public Drawable mainicondrawable;
-    public String mainappname;
 
     int count;
 
@@ -47,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        newCheck = false;
 
         count = 0;
 
