@@ -59,7 +59,7 @@
             android:textSize="24sp"
             android:inputType="number"
             android:singleLine="true"
-            android:hint="1~999(分)"
+            android:hint="1~1440(分)"
             android:gravity="right|center_vertical"
             android:layout_width="150dp" />
     </LinearLayout>

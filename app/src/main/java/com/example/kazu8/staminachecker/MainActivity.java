@@ -10,11 +10,15 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,12 +28,15 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -46,6 +53,14 @@ public class MainActivity extends AppCompatActivity {
     public static SharedPreferences pref;
     public static SharedPreferences.Editor editer;
 
+    public static String bitmapStr;
+    public static String titletext;
+
+    public static Boolean nullcheck;
+
+    public static int nrint;
+    public static int nmint;
+
     public static Drawable mainicon;
     public static String mainname;
     public static Boolean listCheck;
@@ -60,9 +75,9 @@ public class MainActivity extends AppCompatActivity {
         mainicon = null;
         mainname = null;
         listCheck = false;
+        nullcheck = false;
 
         count = 0;
-
 
         listView = (ListView)findViewById(R.id.mainlist);
         mCards = new ArrayList<card>();
@@ -74,14 +89,10 @@ public class MainActivity extends AppCompatActivity {
 
         wordset.addAll(pref.getStringSet("wordSet",wordset));
         for(String word : wordset){
-            mCards.add(pref.getInt(word,0),new card(word,pref.getInt(word + "2468",0),pref.getInt(word + "3579",0),pref.getInt(word + "4680",0),pref.getBoolean(word + "5791",false),pref.getInt(word + "6802",0)));
+            mCards.add(new card(pref.getString(word + "1357icon",""),word,pref.getInt(word + "2468max",0),pref.getInt(word + "3579re",0),pref.getInt(word + "4680se",0),pref.getBoolean(word + "5791al",false),pref.getInt(word + "6802alt",0)));
             count++;
         }
 
-        mCards.add(new card("パズドラ",100,5,0,true,50));
-        mCards.add(new card("モンスト",134,5,5000,false,40));
-        mCards.add(new card("クラロワ",3,120,7999,true,2));
-        mCards.add(new card("デレステ",76,5,4888,false,50));
 
 
         mCardAdapter = new CardAdapter(this,R.layout.card, mCards);
@@ -169,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
             LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View content = inflater.inflate(R.layout.editdialog_layout, null);
+            final View content = inflater.inflate(R.layout.editdialog_layout, null);
 
             builder.setView(content);
 
@@ -182,19 +193,70 @@ public class MainActivity extends AppCompatActivity {
                 nbutton.setImageDrawable(MainActivity.mainicon);
                 nmtitleEdit.setText(MainActivity.mainname + "");
             }
-            MainActivity.listCheck = false;
-            MainActivity.mainname = null;
-            MainActivity.mainicon = null;
+            else {
+                nbutton.setImageResource(R.mipmap.ic_launcher);
+            }
+
 
             builder.setTitle("新規作成");
             builder.setPositiveButton("完了", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
-
+                    titletext = nmtitleEdit.getText().toString();
+                    if(titletext.equals("")){
+                        nullcheck = true;
+                    }
+                    String nrst = nrEdit.getText().toString();
+                    try {
+                        nrint = Integer.parseInt(nrst);
+                    }catch (Exception e){
+                        nullcheck = true;
+                    }
+                    String nmst = nmEdit.getText().toString();
+                    try {
+                        nmint = Integer.parseInt(nmst);
+                    }catch (Exception e){
+                        nullcheck = true;
+                    }
+                    if(nrint > 1440){
+                        nullcheck = true;
+                    }
+                    if(nmint > 999){
+                        nullcheck = true;
+                    }
+                    if(nullcheck == true){
+                        Toast.makeText(getActivity(),"正しい値が入力されていません", Toast.LENGTH_SHORT).show();
+                        DialogFragment dialogFragment = new NewDialogFragment();
+                        dialogFragment.show(getFragmentManager(),"選択肢表示");
+                    }
+                    if(nullcheck == false){
+                        MainActivity.listCheck = false;
+                        MainActivity.mainname = null;
+                        MainActivity.mainicon = null;
+                        nullcheck = false;
+                        Drawable drawable = nbutton.getDrawable();
+                        Bitmap bmp = ((BitmapDrawable) drawable).getBitmap();
+                        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                        bmp.compress(Bitmap.CompressFormat.PNG, 100, baos);
+                        bitmapStr = Base64.encodeToString(baos.toByteArray(), Base64.DEFAULT);
+                        editer.putString(titletext + "1357icon",bitmapStr);
+                        wordset.add(titletext);
+                        editer.putStringSet("wordSet",wordset);
+                        editer.putInt(titletext + "2468max",nmint);
+                        editer.putInt(titletext + "3579re",nrint);
+                        editer.putInt(titletext + "4680se",0);
+                        editer.putBoolean(titletext + "5791al",false);
+                        editer.putInt(titletext + "6802alt",nmint);
+                        editer.commit();
+                        mCards.add(new card(bitmapStr,titletext,nmint,nrint,0,false,nmint));
+                    }
+                    nullcheck = false;
                 }
             });
             builder.setNegativeButton("キャンセル", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
-
+                    MainActivity.listCheck = false;
+                    MainActivity.mainname = null;
+                    MainActivity.mainicon = null;
                 }
             });
 
@@ -343,6 +405,15 @@ public class MainActivity extends AppCompatActivity {
                 hour[position] = ((item.rTime * item.alertTime * 60) - item.sTime) / 3600;
                 minute[position] = (((item.rTime * item.alertTime * 60) - item.sTime) / 60) % 60;
                 second[position] = ((item.rTime * item.alertTime * 60) - item.sTime) % 60;
+                if (!item.iconstr.equals("")) {
+                    BitmapFactory.Options options = new BitmapFactory.Options();
+                    byte[] b = Base64.decode(item.iconstr, Base64.DEFAULT);
+                    Bitmap bmp = BitmapFactory.decodeByteArray(b, 0, b.length).copy(Bitmap.Config.ARGB_8888, true);
+                    viewHolder.iconView.setImageBitmap(bmp);
+                }
+                else{
+                    viewHolder.iconView.setImageResource(R.mipmap.ic_launcher);
+                }
                 viewHolder.titleView.setText(item.title);
                 viewHolder.rtView.setText(item.alertTime + "　まで残り" + hour[position] + "時間 " + minute[position] + "分 " + second[position] + "秒");
                 viewHolder.seekBar.setProgress(item.sTime / 60 / item.rTime);
@@ -471,6 +542,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         private class ViewHolder{
+            ImageView iconView;
             TextView titleView;
             TextView rtView;
             SeekBar seekBar;
@@ -480,6 +552,7 @@ public class MainActivity extends AppCompatActivity {
             Switch swicher;
 
             public ViewHolder(View v){
+                iconView = (ImageView)v.findViewById(R.id.iconView);
                 titleView = (TextView)v.findViewById(R.id.titleText);
                 rtView = (TextView)v.findViewById(R.id.rtText);
                 seekBar = (SeekBar)v.findViewById(R.id.seekBar);
