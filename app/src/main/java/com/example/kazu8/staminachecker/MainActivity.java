@@ -74,14 +74,14 @@ public class MainActivity extends AppCompatActivity {
 
         wordset.addAll(pref.getStringSet("wordSet",wordset));
         for(String word : wordset){
-            mCards.add(pref.getInt(word,0),new card(pref.getInt(word + "1357",0),word,pref.getInt(word + "2468",0),pref.getInt(word + "3579",0),pref.getInt(word + "4680",0),pref.getBoolean(word + "5791",false),pref.getInt(word + "6802",0)));
+            mCards.add(pref.getInt(word,0),new card(word,pref.getInt(word + "2468",0),pref.getInt(word + "3579",0),pref.getInt(word + "4680",0),pref.getBoolean(word + "5791",false),pref.getInt(word + "6802",0)));
             count++;
         }
 
-        mCards.add(new card(0,"パズドラ",100,5,0,true,50));
-        mCards.add(new card(0,"モンスト",134,5,5000,false,40));
-        mCards.add(new card(0,"クラロワ",3,120,7999,true,2));
-        mCards.add(new card(0,"デレステ",76,5,4888,false,50));
+        mCards.add(new card("パズドラ",100,5,0,true,50));
+        mCards.add(new card("モンスト",134,5,5000,false,40));
+        mCards.add(new card("クラロワ",3,120,7999,true,2));
+        mCards.add(new card("デレステ",76,5,4888,false,50));
 
 
         mCardAdapter = new CardAdapter(this,R.layout.card, mCards);
