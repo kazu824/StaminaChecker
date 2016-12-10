@@ -423,11 +423,6 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                         item.sTime = progress * 60 * item.rTime;
-                        hour[position] = ((item.rTime * item.alertTime * 60) - item.sTime) / 3600;
-                        minute[position] = (((item.rTime * item.alertTime * 60) - item.sTime) / 60) % 60;
-                        second[position] = ((item.rTime * item.alertTime * 60) - item.sTime) % 60;
-                        viewHolder.countView.setText((item.sTime / 60 / item.rTime ) + "/" + item.maxNum);
-                        viewHolder.rtView.setText(item.alertTime +"　まで残り" + hour[position] + "時間 " + minute[position] + "分 " + second[position] + "秒");
                         int sCheck = (item.maxNum * item.rTime * 60) - item.sTime;
                         if(sCheck <= 0){
                             item.sTime = item.maxNum * item.rTime * 60;
@@ -453,8 +448,6 @@ public class MainActivity extends AppCompatActivity {
                                             @Override
                                             public void run() {
                                                 viewHolder.spinner.setSelection(item.alertTime - 1);
-                                                item.alertCheck = false;
-                                                viewHolder.swicher.setChecked(item.alertCheck);
                                             }
                                         });
                                     }
@@ -520,8 +513,6 @@ public class MainActivity extends AppCompatActivity {
                                     @Override
                                     public void run() {
                                         viewHolder.spinner.setSelection(item.alertTime - 1);
-                                        item.alertCheck = false;
-                                        viewHolder.swicher.setChecked(item.alertCheck);
                                     }
                                 });
                             }
