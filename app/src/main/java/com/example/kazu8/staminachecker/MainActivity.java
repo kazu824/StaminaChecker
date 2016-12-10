@@ -513,27 +513,28 @@ public class MainActivity extends AppCompatActivity {
                         }
                     },0,1000);
                 }
+                for (int i = 1; i <= item.maxNum; i++){
+                    arrayAdapter[position].add(i);
+                }
+                viewHolder.spinner.setAdapter(arrayAdapter[position]);
+                viewHolder.spinner.setSelection(item.alertTime - 1);
+                viewHolder.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        item.alertTime = position + 1;
+
+
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                });
+                viewHolder.swicher.setChecked(item.alertCheck);
+
             }
 
-            for (int i = 1; i <= item.maxNum; i++){
-                arrayAdapter[position].add(i);
-            }
-            viewHolder.spinner.setAdapter(arrayAdapter[position]);
-            viewHolder.spinner.setSelection(item.alertTime - 1);
-            viewHolder.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    item.alertTime = position + 1;
-
-
-                }
-
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-
-                }
-            });
-            viewHolder.swicher.setChecked(item.alertCheck);
             return convertView;
         }
 
