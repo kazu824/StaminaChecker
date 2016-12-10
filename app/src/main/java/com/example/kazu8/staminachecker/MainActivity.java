@@ -248,6 +248,7 @@ public class MainActivity extends AppCompatActivity {
                         editer.putInt(titletext + "6802alt",nmint);
                         editer.commit();
                         mCards.add(new card(bitmapStr,titletext,nmint,nrint,0,false,nmint));
+
                     }
                     nullcheck = false;
                 }
@@ -445,6 +446,19 @@ public class MainActivity extends AppCompatActivity {
                                         timer[position].cancel();
                                     }
 
+                                    int Spinernum = item.sTime - (item.alertTime*60*item.rTime);
+                                    if(Spinernum > 0){
+                                        item.alertTime = item.maxNum;
+                                        handler[position].post(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                viewHolder.spinner.setSelection(item.alertTime - 1);
+                                                item.alertCheck = false;
+                                                viewHolder.swicher.setChecked(item.alertCheck);
+                                            }
+                                        });
+                                    }
+
                                     item.sTime = item.sTime + 1;
                                     hour[position] = ((item.rTime * item.alertTime * 60) - item.sTime) / 3600;
                                     minute[position] = (((item.rTime * item.alertTime * 60) - item.sTime) / 60) % 60;
@@ -499,7 +513,18 @@ public class MainActivity extends AppCompatActivity {
                             minute[position] = (((item.rTime * item.alertTime * 60) - item.sTime) / 60) % 60;
                             second[position] = ((item.rTime * item.alertTime * 60) - item.sTime) % 60;
 
-
+                            int Spinernum = item.sTime - (item.alertTime*60*item.rTime);
+                            if(Spinernum > 0){
+                                item.alertTime = item.maxNum;
+                                handler[position].post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        viewHolder.spinner.setSelection(item.alertTime - 1);
+                                        item.alertCheck = false;
+                                        viewHolder.swicher.setChecked(item.alertCheck);
+                                    }
+                                });
+                            }
 
                             handler[position].post(new Runnable() {
                                 @Override
@@ -521,8 +546,15 @@ public class MainActivity extends AppCompatActivity {
                 viewHolder.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        item.alertTime = position + 1;
-
+                        int Spinernum = (item.sTime / 60 / item.rTime) - (position + 1);
+                        if(Spinernum > 0){
+                            Toast.makeText(getContext(),(item.sTime / 60 / item.rTime) + "以上を入力してください", Toast.LENGTH_SHORT).show();
+                            item.alertTime = item.maxNum;
+                            viewHolder.spinner.setSelection(item.alertTime - 1);
+                        }
+                        if(Spinernum <= 0){
+                            item.alertTime = position + 1;
+                        }
 
                     }
 
